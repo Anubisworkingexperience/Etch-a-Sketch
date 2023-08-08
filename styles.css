@@ -85,10 +85,6 @@ span {
     display: flex;
 }
 
-.grid {
-    justify-content: center;
-}
-
 .title {
     display: flex;
     align-items: center;
@@ -100,4 +96,12 @@ span {
     color: white;
     background-color: black;
     border: none;
+}
+
+.tool:hover, .color:hover {
+    transform: scale(1.1);
+}
+
+.gridSize {
+    font-size: 24px;
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch a sketch</title>
+    <link href="./styles.css" rel="stylesheet">
+    <link href="./images/art-and-design.png" rel="icon">
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <div class="content">
+    <div class="header">
+    <div class="title">
+        <img src="./images/art-and-design.png">
+        <h1>Etch-a-sketch</h1>
+    </div>
+    <div class="gridSize">35 x 35</div>
+    <input type="range" min="5" max="64" step="1" class="range">
+    </div>
+    <div class="mainContent">
+        <div class="tools">
+            <input type="color" class="color">
+            <span class="choose">Choose color</span>
+            <img src="./images/paint-bucket.png" class="fill tool">
+            <img src="./images/eraser.png" class="erase tool">
+            <span>Clear</span>
+            <span>Rainbow mode</span>
+        </div>
+        <div class="grid">
+        </div>
+    </div>
+    <div class="footer">
+        <p class="github">Copyright © Anubis <a href="https://github.com/Anubisworkingexperience/Etch-a-Sketch" target="_blank"><img src="./images/github-mark.svg" class="githubImage"></a> 2023 </p>
+    </div>
+    </div>
+</body>
+</html>

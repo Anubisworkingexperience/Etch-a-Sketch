@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
+
+
+* {
+    font-family: 'Hind Siliguri', sans-serif;
+    /* border: 2px solid red; */
+}
+
+body {
+    background-color: honeydew;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+img {
+    width: 75px;
+    height: 75px;
+}
+
+h1 {
+    font-size: 64px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.tools {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(175, 215, 173);
+    width: 10%;
+    gap: 30px;
+    padding: 50px;
+}
+
+.color {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border: none;
+}
+
+.githubImage {
+    width: 30px;
+    height: 30px;
+}
+
+.github {
+    font-size: 24px;
+}
+
+span {
+    border: 2px solid salmon;
+    border-radius: 7px;
+    padding: 10px;
+    background-color: rgb(236, 217, 236);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainContent {
+    display: flex;
+}
+
+.grid {
+    justify-content: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 100px;
+}
+
+.choose {
+    color: white;
+    background-color: black;
+    border: none;
+}

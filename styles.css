@@ -3,7 +3,7 @@
 
 * {
     font-family: 'Hind Siliguri', sans-serif;
-    /* border: 2px solid red; */
+     /* border: 1px solid red;  */
 }
 
 body {
@@ -72,7 +72,6 @@ span {
     justify-content: center;
     align-items: center;
     width: 120px;
-    height: auto;
 }
 
 .footer {
@@ -105,3 +104,8 @@ span {
 .gridSize {
     font-size: 24px;
 }
+
+.range {
+    accent-color: black;
+}
+

@@ -9,7 +9,9 @@ range.addEventListener('input', (event) => {
     gridSizeText.textContent = `Grid size: ${event.target.value} x ${event.target.value}`;
     removeGrid();
     createGrid(event.target.value, event.target.value);
+    paintElements();
 });
+
 
 
 function createGrid(rows, columns) {
@@ -28,8 +30,9 @@ function createGrid(rows, columns) {
     gridElement.style.width = `${600 / columns}px`;
     gridElement.style.height = `${600 /rows}px`;
     gridElement.style.backgroundColor = 'white';
-    gridElement.style.border = '2px solid black';
+    gridElement.style.border = 'none';
     gridElement.style.borderRadius = 0;
+    gridElement.classList.add('gridElement');
     return gridElement;
     }
 
@@ -43,7 +46,7 @@ function createGrid(rows, columns) {
     }
     grid.appendChild(elementRow);
    }
-   
+
 }
 
 function removeGrid () {
@@ -56,4 +59,17 @@ function removeGrid () {
 }
 
 createGrid(10, 10);
+
+paintElements();
+
+function paintElements() {
+    const gridElements = document.querySelectorAll('.gridElement');
+
+    for (element of gridElements) {
+        element.addEventListener('click', (event) => {
+            event.target.style.backgroundColor = 'black';
+        });
+    }
+}
+
 

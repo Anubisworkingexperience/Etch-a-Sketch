@@ -64,12 +64,74 @@ paintElements();
 
 function paintElements() {
     const gridElements = document.querySelectorAll('.gridElement');
+    const colorSelector = document.querySelector('.color');
+    
 
     for (element of gridElements) {
-        element.addEventListener('click', (event) => {
-            event.target.style.backgroundColor = 'black';
+        // let isHeld = false;
+
+        // element.addEventListener('click', (event) => {
+        //     event.target.style.backgroundColor = colorSelector.value;
+        // });
+        element.addEventListener('mousedown', (event) => {
+                event.target.style.backgroundColor = colorSelector.value;
         });
+        
     }
 }
+
+//programming tools
+
+//tool selection
+
+const colorFill = document.querySelector('.fill');
+const eraser = document.querySelector('.erase');
+const clear = document.querySelector('.clear');
+const rainbowMode = document.querySelector('.rainbow');
+
+const grid = document.querySelector('.grid');
+const colorSelector = document.querySelector('.color');
+let toolsSelected = 0;
+let toolList = [];
+
+grid.addEventListener('mouseover', (event) => {
+    document.body.style.cursor = 'url(./images/art-and-design.png), auto';
+});
+
+function selectTools(tool) {
+    let isNotSelected = true;
+    toolList.push(tool);
+
+    tool.addEventListener('click', (event) => {
+        isNotSelected = true;
+        if (isNotSelected) {
+            tool.classList.add('selected');
+            toolsSelected += 1;
+            isNotSelected = false;
+            // if (tool ===)
+        }
+        else {
+            tool.classList.remove('selected');
+            toolsSelected -= 1;
+            isNotSelected = true;
+        }
+        if (toolsSelected > 1) {
+            for (item of toolList) {
+                if (item.classList.contains('selected') && item != tool) {
+                    item.classList.remove('selected');
+                    toolsSelected -= 1;
+                    isNotSelected = true;
+                }
+            }
+        }
+        console.log(toolsSelected);
+    });
+}
+
+selectTools(colorFill);
+selectTools(eraser);
+selectTools(clear);
+selectTools(rainbowMode);
+
 
 

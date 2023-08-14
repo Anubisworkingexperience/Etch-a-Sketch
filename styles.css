@@ -45,6 +45,7 @@ h1 {
     width: 10%;
     gap: 30px;
     padding: 50px;
+    user-select: none;
 }
 
 .color {
@@ -57,6 +58,10 @@ h1 {
 .githubImage {
     width: 30px;
     height: 30px;
+}
+
+.githubImage:hover {
+    transform: rotate(0.1turn);
 }
 
 .github {
@@ -107,5 +112,10 @@ span {
 
 .range {
     accent-color: black;
+}
+
+.selected {
+    border-width: 4px;
+    border-color: blue;
 }
 

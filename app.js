@@ -80,8 +80,6 @@ function paintElements() {
     }
 }
 
-//programming tools
-
 //tool selection
 
 const colorFill = document.querySelector('.fill');
@@ -94,10 +92,6 @@ const colorSelector = document.querySelector('.color');
 let toolsSelected = 0;
 let toolList = [];
 
-grid.addEventListener('mouseover', (event) => {
-    document.body.style.cursor = 'url(./images/art-and-design.png), auto';
-});
-
 function selectTools(tool) {
     let isNotSelected = true;
     toolList.push(tool);
@@ -108,7 +102,9 @@ function selectTools(tool) {
             tool.classList.add('selected');
             toolsSelected += 1;
             isNotSelected = false;
-            // if (tool ===)
+            grid.addEventListener('mouseover', (event) => {
+                grid.style.cursor = 'cell';
+            })
         }
         else {
             tool.classList.remove('selected');
@@ -132,6 +128,22 @@ selectTools(colorFill);
 selectTools(eraser);
 selectTools(clear);
 selectTools(rainbowMode);
+
+const choose = document.querySelector('.choose');
+
+const selectedTools = document.querySelectorAll('.tool');
+
+choose.addEventListener('click', (e) => {
+    for (tool of selectedTools) {
+        if (tool.classList.contains('selected')) {
+            tool.classList.remove('selected');
+        }
+        
+    }
+})
+
+//programming actual tools
+
 
 
 

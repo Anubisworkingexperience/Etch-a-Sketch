@@ -4,11 +4,20 @@ TODO
 1. Grid
 1.5. Remove rmb paint
 2. Page styling
-3. Custom cursors for every button while on grid area
-4. Changing body colors in some time 
-5.Show/hide tools button
+3. Selection bug (when both spans click values are even)
 */
 
 const clear = document.querySelector('.clear');
+let clickCount = 0;
 
-console.log(clear.classList.contains('tool'));
+clear.addEventListener('click', (e) => {
+    clickCount += 1;
+    console.log(clickCount);
+    if (clickCount % 2 == 0) {
+        e.target.style.backgroundColor = 'red';
+    }
+    else {
+        e.target.style.backgroundColor = 'blue';
+    }
+});
+

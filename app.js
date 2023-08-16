@@ -89,38 +89,27 @@ const rainbowMode = document.querySelector('.rainbow');
 
 const grid = document.querySelector('.grid');
 const colorSelector = document.querySelector('.color');
-let toolsSelected = 0;
 let toolList = [];
 
 function selectTools(tool) {
-    let isNotSelected = true;
+    let clickCount = 0;
     toolList.push(tool);
 
     tool.addEventListener('click', (event) => {
-        isNotSelected = true;
-        if (isNotSelected) {
+        for (item of toolList) {
+            if (item.classList.contains('selected') && item != tool) {
+                item.classList.remove('selected');
+                clickCount = 0;
+            }
+        }
+        clickCount += 1;
+        if (clickCount % 2 != 0) {
             tool.classList.add('selected');
-            toolsSelected += 1;
-            isNotSelected = false;
-            grid.addEventListener('mouseover', (event) => {
-                grid.style.cursor = 'cell';
-            })
         }
         else {
             tool.classList.remove('selected');
-            toolsSelected -= 1;
-            isNotSelected = true;
         }
-        if (toolsSelected > 1) {
-            for (item of toolList) {
-                if (item.classList.contains('selected') && item != tool) {
-                    item.classList.remove('selected');
-                    toolsSelected -= 1;
-                    isNotSelected = true;
-                }
-            }
-        }
-        console.log(toolsSelected);
+        console.log(clickCount);
     });
 }
 
@@ -144,6 +133,38 @@ choose.addEventListener('click', (e) => {
 
 //programming actual tools
 
+// function Fill() {
+//     const color = document.querySelector('.color');
+//     const colorFill = document.querySelector('.fill');
+//     const grid = document.querySelector('.grid');
+//     const gridElements = document.querySelectorAll('.gridElement');
+//     const choose = document.querySelector('.choose');
 
+//     //wait for color fill button to be pressed 
+//     const promise = new Promise((resolve, reject) => {
+//         colorFill.addEventListener('click', resolve);
+//     });
+
+//     function fillingGrid() {
+//         grid.addEventListener('click', (e) => {
+//             for (element of gridElements) {
+//                 element.style.backgroundColor = color.value;
+//             }
+//         });
+//         choose.addEventListener('click', (e) => {
+//             paintElements();
+//         });
+//     }
+
+//     async function waitClick() {
+//         return await promise .then((e) => {
+//             fillingGrid();
+//         });
+//     }
+//     waitClick();
+    
+// }
+
+// Fill();
 
 

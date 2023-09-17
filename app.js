@@ -10,6 +10,7 @@ range.addEventListener('input', (event) => {
     removeGrid();
     createGrid(event.target.value, event.target.value);
     paintElements();
+    Fill();
 });
 
 
@@ -109,7 +110,10 @@ function selectTools(tool) {
         else {
             tool.classList.remove('selected');
         }
-        console.log(clickCount);
+        // console.log(clickCount);
+    });
+    grid.addEventListener('mouseover', (e) => {
+        body.style.cursor = 'cell';
     });
 }
 
@@ -117,6 +121,8 @@ selectTools(colorFill);
 selectTools(eraser);
 selectTools(clear);
 selectTools(rainbowMode);
+
+const body = document.querySelector('body');
 
 const choose = document.querySelector('.choose');
 
@@ -133,38 +139,34 @@ choose.addEventListener('click', (e) => {
 
 //programming actual tools
 
-// function Fill() {
-//     const color = document.querySelector('.color');
-//     const colorFill = document.querySelector('.fill');
-//     const grid = document.querySelector('.grid');
-//     const gridElements = document.querySelectorAll('.gridElement');
-//     const choose = document.querySelector('.choose');
+function Fill() {
+    const color = document.querySelector('.color');
+    const colorFill = document.querySelector('.fill');
+    const grid = document.querySelector('.grid');
+    const gridElements = document.querySelectorAll('.gridElement');
+    const choose = document.querySelector('.choose');
 
-//     //wait for color fill button to be pressed 
-//     const promise = new Promise((resolve, reject) => {
-//         colorFill.addEventListener('click', resolve);
-//     });
+    function fillGrid() {
+        console.log('grid clicked')
+        for (const element of gridElements) {
+            element.style.backgroundColor = color.value;
+        }
+    };
 
-//     function fillingGrid() {
-//         grid.addEventListener('click', (e) => {
-//             for (element of gridElements) {
-//                 element.style.backgroundColor = color.value;
-//             }
-//         });
-//         choose.addEventListener('click', (e) => {
-//             paintElements();
-//         });
-//     }
-
-//     async function waitClick() {
-//         return await promise .then((e) => {
-//             fillingGrid();
-//         });
-//     }
-//     waitClick();
+    colorFill.addEventListener('click', () => {
+        if (colorFill.classList.contains('selected')) {
+            console.log('selected')
+            grid.addEventListener('click', fillGrid);
+        }
+        else {
+            console.log('not selected')
+            grid.removeEventListener('click', fillGrid);
+        }
+    });
     
-// }
+}
 
-// Fill();
+Fill();
+
 
 

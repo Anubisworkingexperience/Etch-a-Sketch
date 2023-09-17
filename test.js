@@ -7,17 +7,15 @@ TODO
 3. Selection bug (when both spans click values are even)
 */
 
-const clear = document.querySelector('.clear');
-let clickCount = 0;
+const colorFill = document.querySelector('.fill');
+const choose = document.querySelector('.choose');
+let counter = 2;
 
-clear.addEventListener('click', (e) => {
-    clickCount += 1;
-    console.log(clickCount);
-    if (clickCount % 2 == 0) {
-        e.target.style.backgroundColor = 'red';
-    }
-    else {
-        e.target.style.backgroundColor = 'blue';
-    }
-});
+if (counter % 2 == 0) {
+  colorFill.addEventListener('click', () => {
+    choose.computedStyleMap.backgroundColor = 'red';
+    counter += 1;
+  });
+}
+
 

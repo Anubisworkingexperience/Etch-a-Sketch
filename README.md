@@ -1,1 +1,1 @@
-# Etch-a-Sketch
+Etch a sketch is some kind of game where you have a grid which can be painted.

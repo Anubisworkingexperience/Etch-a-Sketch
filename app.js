@@ -66,19 +66,32 @@ paintElements();
 function paintElements() {
     const gridElements = document.querySelectorAll('.gridElement');
     const colorSelector = document.querySelector('.color');
+    const grid = document.querySelector('.grid');
+
+    gridElements.forEach(gridElement => {
+        gridElement.addEventListener("mousedown", () => {
+        grid.classList.add('hold');
+        paintElement(gridElement);
+      });
     
+    gridElement.addEventListener('mouseover', (event) => {
+        if (grid.classList.contains('hold')) {
+            paintElement(gridElement);
+        }
+    });
 
-    for (element of gridElements) {
-        // let isHeld = false;
+    grid.addEventListener('mouseup', () => {
+        grid.classList.remove('hold');
+    });
 
-        // element.addEventListener('click', (event) => {
-        //     event.target.style.backgroundColor = colorSelector.value;
-        // });
-        element.addEventListener('mousedown', (event) => {
-                event.target.style.backgroundColor = colorSelector.value;
-        });
-        
+    document.addEventListener("mouseup", () => {
+        grid.classList.remove("hold");
+    });
+
+    function paintElement(element) {
+        element.style.backgroundColor = colorSelector.value;
     }
+});
 }
 
 //tool selection
@@ -113,7 +126,7 @@ function selectTools(tool) {
         // console.log(clickCount);
     });
     grid.addEventListener('mouseover', (e) => {
-        body.style.cursor = 'cell';
+        // body.style.cursor = 'cell';
     });
 }
 
@@ -145,24 +158,46 @@ function Fill() {
     const grid = document.querySelector('.grid');
     const gridElements = document.querySelectorAll('.gridElement');
     const choose = document.querySelector('.choose');
+    const eraser = document.querySelector('.erase');
+    const clear = document.querySelector('.clear');
+    const rainbow = document.querySelector('.rainbow');
 
     function fillGrid() {
-        console.log('grid clicked')
         for (const element of gridElements) {
             element.style.backgroundColor = color.value;
         }
     };
 
+    function erase() {
+        for (const element of gridElements) {
+            element.addEventListener('click', () => {
+                element.style.backgroundColor = 'white';
+            });
+        }
+    };
+
     colorFill.addEventListener('click', () => {
         if (colorFill.classList.contains('selected')) {
-            console.log('selected')
+            console.log('color fill selected')
             grid.addEventListener('click', fillGrid);
         }
         else {
-            console.log('not selected')
+            console.log('color fill not selected')
             grid.removeEventListener('click', fillGrid);
         }
     });
+
+    eraser.addEventListener('click', () => {
+        if (eraser.classList.contains('selected')) {
+            console.log('eraser selected')
+            grid.addEventListener('click', erase);
+        }
+        else {
+            console.log('eraser not selected')
+            grid.removeEventListener('click', erase);
+        }
+    });
+
     
 }
 

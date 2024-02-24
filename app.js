@@ -89,7 +89,9 @@ function paintElements() {
     });
 
     function paintElement(element) {
-        element.style.backgroundColor = colorSelector.value;
+        if (!(eraser.classList.contains('selected')) && !(rainbowMode.classList.contains('selected'))){
+            element.style.backgroundColor = colorSelector.value;
+        }
     }
 });
 }
@@ -108,7 +110,7 @@ let toolList = [];
 function selectTools(tool) {
     tool.addEventListener("click", (e) => {
         let currentlySelected = toolsSelected();
-        console.log(currentlySelected);
+        // console.log(currentlySelected);
         if (tool.classList.contains('selected')) {
             tool.classList.remove('selected');
             tool.style.border = '2px solid salmon';
@@ -197,6 +199,60 @@ function configureTools() {
         });
     }
 
+    function randomRainbowColor() {
+        let randomDigit = Math.floor((Math.random() * 6));
+        let rainbowColor;
+        console.log(randomDigit);
+        switch(randomDigit) {
+            case 0:
+                rainbowColor = 'red';
+                break;
+            case 1:
+                rainbowColor = 'orange';
+                break;
+            case 2:
+                rainbowColor = 'yellow';
+                break;
+            case 3:
+                rainbowColor = 'green';
+                break;
+            case 4:
+                rainbowColor = 'deepskyblue';
+                break;
+            case 5:
+                rainbowColor = 'blue';
+                break;
+            case 6:
+                rainbowColor = 'blueviolet';
+                break;
+            default:
+                rainbowColor = 'red';
+        }
+        console.log(rainbowColor);
+        return rainbowColor;
+    }
+
+    function rainbowPaint() {
+        for (const element of gridElements) {
+            let elementColor;
+            element.addEventListener('mousedown', () => {
+                rainbow.classList.add('hold');
+                elementColor = randomRainbowColor();
+                console.log(elementColor);
+                element.style.backgroundColor = elementColor;
+            });
+            element.addEventListener('mouseup', () => {
+                rainbow.classList.remove('hold');
+            });
+            element.addEventListener('mouseover', () => {
+                if (rainbow.classList.contains('hold')) {
+                    elementColor = randomRainbowColor();
+                    element.style.backgroundColor = elementColor;
+                }
+            });
+        }    
+    }
+
     //running functions
     colorFill.addEventListener('click', () => {
         if (colorFill.classList.contains('selected')) {
@@ -223,6 +279,15 @@ function configureTools() {
         }
         else {
             grid.removeEventListener('click', clearGrid);
+        }
+    });
+
+    rainbow.addEventListener('click', () => {
+        if (rainbow.classList.contains('selected')) {
+            grid.addEventListener('click', rainbowPaint);
+        }
+        else {
+            grid.removeEventListener('click', rainbowPaint);
         }
     });
 

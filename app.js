@@ -106,28 +106,31 @@ const colorSelector = document.querySelector('.color');
 let toolList = [];
 
 function selectTools(tool) {
-    let clickCount = 0;
-    toolList.push(tool);
-
-    tool.addEventListener('click', (event) => {
-        for (item of toolList) {
-            if (item.classList.contains('selected') && item != tool) {
-                item.classList.remove('selected');
-                clickCount = 0;
-            }
-        }
-        clickCount += 1;
-        if (clickCount % 2 != 0) {
-            tool.classList.add('selected');
+    tool.addEventListener("click", (e) => {
+        let currentlySelected = toolsSelected();
+        console.log(currentlySelected);
+        if (tool.classList.contains('selected')) {
+            tool.classList.remove('selected');
+            tool.style.border = '2px solid salmon';
         }
         else {
-            tool.classList.remove('selected');
+            if (!(tool.classList.contains('selected')) && currentlySelected < 1) {
+                tool.classList.add('selected');
+                tool.style.border = '3px solid blue';
+            }
         }
-        // console.log(clickCount);
     });
-    grid.addEventListener('mouseover', (e) => {
-        // body.style.cursor = 'cell';
+}
+
+function toolsSelected() {
+    const selectedTools = document.querySelectorAll('.tool');
+    let selected = 0;
+    selectedTools.forEach(tool => {
+        if (tool.classList.contains('selected')) {
+            selected += 1;
+        }
     });
+    return selected;
 }
 
 selectTools(colorFill);
@@ -136,18 +139,17 @@ selectTools(clear);
 selectTools(rainbowMode);
 
 const body = document.querySelector('body');
-
 const choose = document.querySelector('.choose');
-
 const selectedTools = document.querySelectorAll('.tool');
 
-choose.addEventListener('click', (e) => {
-    for (tool of selectedTools) {
+//remove selection after clicking "Choose color" button
+selectedTools.forEach(tool => {
+    choose.addEventListener('click', () => {
         if (tool.classList.contains('selected')) {
             tool.classList.remove('selected');
+            tool.style.border = '2px solid salmon';
         }
-        
-    }
+    });
 })
 
 //programming actual tools

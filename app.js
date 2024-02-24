@@ -10,7 +10,7 @@ range.addEventListener('input', (event) => {
     removeGrid();
     createGrid(event.target.value, event.target.value);
     paintElements();
-    Fill();
+    configureTools();
 });
 
 

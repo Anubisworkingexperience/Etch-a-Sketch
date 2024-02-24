@@ -143,18 +143,22 @@ const choose = document.querySelector('.choose');
 const selectedTools = document.querySelectorAll('.tool');
 
 //remove selection after clicking "Choose color" button
-selectedTools.forEach(tool => {
-    choose.addEventListener('click', () => {
-        if (tool.classList.contains('selected')) {
-            tool.classList.remove('selected');
-            tool.style.border = '2px solid salmon';
-        }
-    });
-})
+function chooseUnselect() {
+    selectedTools.forEach(tool => {
+        choose.addEventListener('click', () => {
+            if (tool.classList.contains('selected')) {
+                tool.classList.remove('selected');
+                tool.style.border = '2px solid salmon';
+            }
+        });
+    })
+}
+chooseUnselect();
+
 
 //programming actual tools
 
-function Fill() {
+function runningTools() {
     const color = document.querySelector('.color');
     const colorFill = document.querySelector('.fill');
     const grid = document.querySelector('.grid');
@@ -172,38 +176,41 @@ function Fill() {
 
     function erase() {
         for (const element of gridElements) {
-            element.addEventListener('click', () => {
+            element.addEventListener('mousedown', () => {
+                eraser.classList.add('hold');
                 element.style.backgroundColor = 'white';
+            });
+            element.addEventListener('mouseup', () => {
+                eraser.classList.remove('hold');
+            });
+            element.addEventListener('mouseover', () => {
+                if (eraser.classList.contains('hold')) {
+                    element.style.backgroundColor = 'white';
+                }
             });
         }
     };
 
+    //running functions
     colorFill.addEventListener('click', () => {
         if (colorFill.classList.contains('selected')) {
-            console.log('color fill selected')
             grid.addEventListener('click', fillGrid);
         }
         else {
-            console.log('color fill not selected')
             grid.removeEventListener('click', fillGrid);
         }
     });
 
     eraser.addEventListener('click', () => {
         if (eraser.classList.contains('selected')) {
-            console.log('eraser selected')
             grid.addEventListener('click', erase);
         }
         else {
-            console.log('eraser not selected')
             grid.removeEventListener('click', erase);
+            paintElements();
         }
     });
 
-    
 }
 
-Fill();
-
-
-
+runningTools();

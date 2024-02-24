@@ -158,7 +158,7 @@ chooseUnselect();
 
 //programming actual tools
 
-function runningTools() {
+function configureTools() {
     const color = document.querySelector('.color');
     const colorFill = document.querySelector('.fill');
     const grid = document.querySelector('.grid');
@@ -191,6 +191,12 @@ function runningTools() {
         }
     };
 
+    function clearGrid() {
+        gridElements.forEach(gridElement => {
+            gridElement.style.backgroundColor = 'white';
+        });
+    }
+
     //running functions
     colorFill.addEventListener('click', () => {
         if (colorFill.classList.contains('selected')) {
@@ -211,6 +217,15 @@ function runningTools() {
         }
     });
 
+    clear.addEventListener('click', () => {
+        if (clear.classList.contains('selected')) {
+            grid.addEventListener('click', clearGrid);
+        }
+        else {
+            grid.removeEventListener('click', clearGrid);
+        }
+    });
+
 }
 
-runningTools();
+configureTools();
